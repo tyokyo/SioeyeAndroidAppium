@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import ckt.App.Util.Draw;
 import ckt.App.Util.VP;
 import ckt.android.page.AccountPage;
 import ckt.android.page.DiscoverPage;
@@ -88,7 +89,9 @@ public class DiscoverAction extends VP{
 		List<WebElement> elements = swip.findElements(By.className("android.widget.RelativeLayout"));
 		int size = elements.size();
 		log("Video count is "+size);
-		elements.get(0).click();
+		clickElement(elements.get(0));
+		wait(3);
+		Draw.takeScreenShotWithDraw("playVideo");
 		if (existById(DiscoverPage.dismiss_id)) {
 			clickDismiss();
 		}

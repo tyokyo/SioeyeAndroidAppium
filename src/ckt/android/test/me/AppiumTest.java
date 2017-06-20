@@ -11,10 +11,9 @@ import ckt.android.action.AccountAction;
 
 public class AppiumTest  extends VP{
 	@BeforeSuite
-	@Parameters({ "port", "udid" ,"address","username","password"})
-	public void setup(String port, String udid,String address,String username,String password){
-		startAppiumDriver(address,port,udid,username,password);
-		AccountAction.inLogin();
+	@Parameters({ "port", "udid" ,"address","username","password","apk"})
+	public void setup(String port, String udid,String address,String username,String password,String apk){
+		startAppiumDriver(address,port,udid,username,password,apk);
 	}
 	@AfterSuite
 	public void teadDown(){

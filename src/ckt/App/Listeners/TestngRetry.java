@@ -21,7 +21,6 @@ public class TestngRetry implements IRetryAnalyzer {
 	public boolean retry(ITestResult result) {
 		if (retryCount <= maxRetryCount) {
 			String message ="running retry for-" + result.getName() + "on class"+
-
 					this.getClass().getName() + "Retrying "+ retryCount + " times";
 					logger.info(message);
 					Reporter.setCurrentTestResult(result);

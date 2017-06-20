@@ -56,6 +56,14 @@ public class VP extends BaseAppium{
 		log("CLICK-ID::"+id);
 		getElementById(id).click();
 	}
+	public static void clickElement(WebElement webElement){
+		if (webElement!=null) {
+			log("CLICK-WebElement::"+webElement.getAttribute("xpath"));
+			webElement.click();
+		}else {
+			log("Element is Null");
+		}
+	}
 	public static void clickByClassName(String className){
 		log("CLICK-CLASSNAME:"+className);
 		getElementByClassName(className).click();

@@ -51,10 +51,15 @@ public class TestngListener extends TestListenerAdapter {
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		super.onTestFailure(tr);
+		try {
+			takeScreenShot(tr,"Faled");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		Log.infoFailed(tr.getName() + " Failure");
 		String drawString="Faled";
 		
-		printErrorMsg(tr);
+		//printErrorMsg(tr);
 		/*try {
 			String pagesource = BaseAppium.getDriver().getPageSource();
 			if (pagesource.contains("Unfortunately")||pagesource.contains("停止运行")) {
@@ -89,6 +94,7 @@ public class TestngListener extends TestListenerAdapter {
 	@Override
 	public void onTestSkipped(ITestResult tr) {
 		super.onTestSkipped(tr);
+		printErrorMsg(tr);
 		Log.infoSkipped(tr.getName() + " Skipped");
 	}
 

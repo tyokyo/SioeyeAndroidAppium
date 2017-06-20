@@ -1,7 +1,8 @@
 package ckt.android.testcase.discover;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -12,25 +13,30 @@ import ckt.android.action.DiscoverAction;
 import ckt.android.action.MainAction;
 
 public class DiscoverCase extends VP{
-	@BeforeMethod
-	@Parameters({ "port", "udid" ,"address","username","password"})
-	public void setup(String port, String udid,String address,String username,String password){
-		startAppiumDriver(address,port,udid,username,password);
+	@BeforeSuite
+	@Parameters({ "port", "udid" ,"address","username","password","apk"})
+	public void setup(String port, String udid,String address,String username,String password,String apk){
+		startAppiumDriver(address,port,udid,username,password,apk);
+	}
+	@BeforeTest
+	public void beforeTest(){
+		reStartApp();
 		AccountAction.inLogin();
 	}
-	@AfterMethod
+	@AfterSuite
 	public void teadDown(){
 		stopAppiumDriver();
 	}
 	@Test(invocationCount = 20)
 	public void testPlayRecommandVideo(){
 		MainAction.clickDiscover();
+		Draw.takeScreenShotWithDraw("Discover");
 		DiscoverAction.clickRecommand();
 		swipeToUp(1000, getRandom());
 
 		DiscoverAction.playRcommandVideo();
 		DiscoverAction.waitVideoLoading();
-		Draw.takeScreenShot();
+		Draw.takeScreenShotWithDraw("waitVideoLoading");
 		pressBack(1);
 	}
 	@Test  (invocationCount = 5)

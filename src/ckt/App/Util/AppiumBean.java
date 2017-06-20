@@ -36,5 +36,11 @@ public class AppiumBean {
 	private  String udid;
 	private  String username;
 	private  String password;
-	
+	private  String apk;
+	public String getApk() {
+		return apk;
+	}
+	public void setApk(String apk) {
+		this.apk = apk;
+	}
 }

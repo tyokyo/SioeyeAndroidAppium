@@ -23,13 +23,14 @@ public class BaseAppium {
 		BaseAppium.bean = bean;
 	}
 	@SuppressWarnings("rawtypes")
-	public static void startAppiumDriver(String address,String port,String udid,String username,String password){
+	public static void startAppiumDriver(String address,String port,String udid,String username,String password,String apk){
 		AppiumBean bean = new AppiumBean();
 		bean.setAddress(address);
 		bean.setPort(port);
 		bean.setUdid(udid);
 		bean.setUsername(username);
 		bean.setPassword(password);
+		bean.setApk(apk);
 		setBean(bean);
 		
 		int  TimeUnitSECONDS = 10;
@@ -43,7 +44,8 @@ public class BaseAppium {
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("sessionOverride", true);
         //if no need install don't add this
-        capabilities.setCapability("app", "/Users/Qiang.Zhang/Desktop/software/apk/Sioeye2.0_APP_S11A_100-2.0.68.apk");
+        capabilities.setCapability("app", apk);
+        //capabilities.setCapability("app", "/Users/Qiang.Zhang/Desktop/software/apk/Sioeye2.0_APP_S11A_100-2.0.68.apk");
         capabilities.setCapability("appPackage", "cn.sioeye.sioeyeapp");
         //support Chinese 
         capabilities.setCapability("unicodeKeyboard" ,"True");
