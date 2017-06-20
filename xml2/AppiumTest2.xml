@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="1497344421731" parallel="classes" thread-count="3"><test verbose="2" preserve-order="true" name="AppiumTest2"><classes><class name="ckt.android.test.me.AppiumTest2" /></classes></test></suite>

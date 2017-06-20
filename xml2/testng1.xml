@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="1495101523335">
+	<parameter name="port" value="4723" />
+	<parameter name="udid" value="HC44VWM04926" />
+	<parameter name="address" value="10.120.3.115" />
+	<parameter name="username" value="896409120@qq.com" />
+	<parameter name="password" value="123456789" />
+	<test preserve-order="true" name="HC44VWM04926_4723">
+		<listeners>
+			<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+			<listener class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
+			<listener class-name="ckt.App.Listeners.TestngListener"></listener>
+		</listeners>
+		<classes>
+			<class name="ckt.android.testcase.account.AccountCase" />
+			<!-- <methods>
+				<include name="testPlayRecommandVideo" />
+			</methods> -->
+		</classes>
+	</test>
+</suite>

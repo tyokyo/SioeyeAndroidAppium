@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="1495101523334">
+	<parameter name="port" value="4724" />
+	<parameter name="udid" value="BBN4T17210000082" />
+	<parameter name="address" value="10.120.3.115" />
+	<parameter name="username" value="285229482@qq.com" />
+	<parameter name="password" value="123456789" />
+	<test preserve-order="true" name="LS5501_4725">
+		<listeners>
+			<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+			<listener class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
+			<listener class-name="ckt.App.Listeners.TestngListener"></listener>
+		</listeners>
+		<classes>
+			<class name="ckt.android.testcase.discover.DiscoverCase" />
+			<!-- <class name="ckt.android.me.test.AppiumTest2" /> -->
+		</classes>
+	</test>
+</suite>
+

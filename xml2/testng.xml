@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="1497345026475" parallel="classes" thread-count="3">
+	<parameter name="port" value="port" />
+	<parameter name="udid" value="udid" />
+	<parameter name="address" value="address" />
+	<test verbose="2" preserve-order="true" name="Appium-IOS">
+		<classes>
+			<class name="ckt.android.test.AppiumTest" />
+			<class name="ckt.android.test.AppiumTest2" />
+			<class name="ckt.android.test.me.AppiumTest" />
+			<class name="ckt.android.test.me.AppiumTest2" />
+		</classes>
+	</test>
+</suite>
