@@ -5,6 +5,8 @@
 	<parameter name="address" value="10.120.3.115" />
 	<parameter name="username" value="896409120@qq.com" />
 	<parameter name="password" value="123456789" />
+	<!-- <parameter name="apk" value="apk/Sioeye2.0_APP_S11A_100-2.0.83.apk" /> -->
+	<parameter name="apk" value="/Users/Qiang.Zhang/Desktop/software/apk/Sioeye2.0_APP_S11A_100-2.0.68.apk" />
 	<test preserve-order="true" name="HC44VWM04926_4723">
 		<!-- <listeners>
 			<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
@@ -20,3 +22,4 @@
 		</classes>
 	</test>
 </suite>
+ 
