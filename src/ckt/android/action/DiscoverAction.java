@@ -89,7 +89,28 @@ public class DiscoverAction extends VP{
 		List<WebElement> elements = swip.findElements(By.className("android.widget.RelativeLayout"));
 		int size = elements.size();
 		log("Video count is "+size);
-		clickElement(elements.get(0));
+		for (WebElement webElement : elements) {
+			try {
+				webElement.findElement(By.id(DiscoverPage.media_avatar_id));
+				
+				List<WebElement> textViewElements =webElement.findElements(By.className("android.widget.TextView"));
+				for (WebElement textViewElement : textViewElements) {
+					log(textViewElement.getText());
+				}
+				
+				webElement.click();
+				log("CLICK ELEMENT- PLAY VIDEO");
+				
+				if (existById(DiscoverPage.dismiss_id)) {
+					clickDismiss();
+				}
+				break;
+			} catch (Exception e) {
+				// TODO: handle exception
+				log("not find avatar");
+			}
+		}
+		
 		wait(3);
 		Draw.takeScreenShotWithDraw("playVideo");
 		if (existById(DiscoverPage.dismiss_id)) {
@@ -106,9 +127,26 @@ public class DiscoverAction extends VP{
 		List<WebElement> elements = swip.findElements(By.className("android.widget.RelativeLayout"));
 		int size = elements.size();
 		log("Video count is "+size);
-		elements.get(0).click();
-		if (existById(DiscoverPage.dismiss_id)) {
-			clickDismiss();
+		for (WebElement webElement : elements) {
+			try {
+				webElement.findElement(By.id(DiscoverPage.media_avatar_id));
+				
+				List<WebElement> textViewElements =webElement.findElements(By.className("android.widget.TextView"));
+				for (WebElement textViewElement : textViewElements) {
+					log(textViewElement.getText());
+				}
+				
+				webElement.click();
+				log("CLICK ELEMENT- PLAY VIDEO");
+				
+				if (existById(DiscoverPage.dismiss_id)) {
+					clickDismiss();
+				}
+				break;
+			} catch (Exception e) {
+				// TODO: handle exception
+				log("not find avatar");
+			}
 		}
 	}
 	public static void waitVideoLoading(){

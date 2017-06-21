@@ -6,13 +6,15 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import ckt.android.action.AccountAction;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.functions.ExpectedCondition;
-
 import static io.appium.java_client.android.AndroidKeyCode.BACKSPACE;
 import static io.appium.java_client.android.AndroidKeyCode.KEYCODE_MOVE_END;
 /**
@@ -532,6 +534,5 @@ public class VP2 extends BaseAppium {
             //循环后退删除
             getDriver().pressKeyCode(BACKSPACE);
         }
-
     }
 }

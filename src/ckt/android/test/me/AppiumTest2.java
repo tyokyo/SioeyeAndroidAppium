@@ -7,20 +7,21 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ckt.App.Util.BaseAppium;
+import ckt.android.action.AccountAction;
 
 public class AppiumTest2  extends BaseAppium{
 	@BeforeSuite
-	@Parameters({ "port", "udid" ,"address","username","password"})
-	public void setup(String port, String udid,String address,String username,String password){
-		startAppiumDriver(address,port,udid,username,password);
+	@Parameters({ "port", "udid" ,"address","username","password","apk"})
+	public void setup(String port, String udid,String address,String username,String password,String apk){
+		startAppiumDriver(address,port,udid,username,password,apk);
+	}
+	@BeforeTest
+	public void beforeTest(){
+		AccountAction.inLogin();
 	}
 	@AfterSuite
 	public void teadDown(){
 		stopAppiumDriver();
-	}
-	@BeforeTest
-	public void BeforeTest(){
-		getDriver().resetApp();
 	}
 	@Test
 	public void testC(){

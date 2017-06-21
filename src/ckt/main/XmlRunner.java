@@ -22,15 +22,12 @@ public class XmlRunner {
 		testNG.addListener(new HTMLReporter());
 		testNG.addListener(new JUnitXMLReporter());
 		testNG.addListener(new TestngListener());
-		testNG.addListener(new OSFilter());
-		testNG.addListener(new IProgressTracker());
 		//testNG.setThreadCount(2);
 		
 		//testNG.setSuiteThreadPoolSize(2);
 		//testNG.setOutputDirectory("test-output\\"+System.currentTimeMillis());
 		List<String> suits = new ArrayList<String>();
-		suits.add("xml/testng1.xml");
-		suits.add("xml/testng2.xml");
+		suits.add("xml/testng.xml");
 		testNG.setTestSuites(suits);
 		testNG.run();
 		System.out.println(testNG.getOutputDirectory());

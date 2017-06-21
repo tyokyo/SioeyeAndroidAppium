@@ -5,32 +5,32 @@ import org.testng.annotations.Test;
 import io.appium.java_client.android.AndroidElement;
 
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 
 import ckt.App.Util.Draw;
 import ckt.App.Util.VP;
 import ckt.App.Util.VP2;
+import ckt.android.action.AccountAction;
 import ckt.android.action.DiscoverAction;
 import ckt.android.action.MainAction;
 import ckt.android.page.DiscoverPage;
 
 public class AppiumTest  extends VP{
 	@BeforeSuite
-	@Parameters({ "port", "udid" ,"address","username","password"})
-	public void setup(String port, String udid,String address,String username,String password){
-		startAppiumDriver(address,port,udid,username,password);
+	@Parameters({ "port", "udid" ,"address","username","password","apk"})
+	public void setup(String port, String udid,String address,String username,String password,String apk){
+		startAppiumDriver(address,port,udid,username,password,apk);
+	}
+	@BeforeTest
+	public void beforeTest(){
+		reStartApp();
+		AccountAction.inLogin();
 	}
 	@AfterSuite
 	public void teadDown(){
 		stopAppiumDriver();
-	}
-	@BeforeMethod
-	public void BeforeTest(){
-		reStartApp();
 	}
 	@Test
 	public void testAa() throws InterruptedException{

@@ -2,45 +2,57 @@ package ckt.android.testcase.discover;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ckt.App.Util.Draw;
 import ckt.App.Util.VP;
-import ckt.android.action.AccountAction;
+import ckt.App.Util.VP2;
 import ckt.android.action.DiscoverAction;
 import ckt.android.action.MainAction;
 
 public class DiscoverCase extends VP{
 	@BeforeSuite
 	@Parameters({ "port", "udid" ,"address","username","password","apk"})
-	public void setup(String port, String udid,String address,String username,String password,String apk){
+	public void beforeSuite(String port, String udid,String address,String username,String password,String apk){
 		startAppiumDriver(address,port,udid,username,password,apk);
 	}
-	@BeforeTest
-	public void beforeTest(){
-		reStartApp();
-		AccountAction.inLogin();
-	}
 	@AfterSuite
-	public void teadDown(){
+	public void afterSuite(){
 		stopAppiumDriver();
 	}
 	@Test(invocationCount = 20)
 	public void testPlayRecommandVideo(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		Draw.takeScreenShotWithDraw("Discover");
 		DiscoverAction.clickRecommand();
-		swipeToUp(1000, getRandom());
+		swipeToUp(200, getRandom());
 
 		DiscoverAction.playRcommandVideo();
 		DiscoverAction.waitVideoLoading();
 		Draw.takeScreenShotWithDraw("waitVideoLoading");
 		pressBack(1);
 	}
-	@Test  (invocationCount = 5)
+	@Test(invocationCount = 2)
+	public void testPlayRecommandVideo1(){
+		initializeScript();
+
+		MainAction.clickDiscover();
+		Draw.takeScreenShotWithDraw("Discover");
+		DiscoverAction.clickRecommand();
+		swipeToUp(200, getRandom());
+
+		DiscoverAction.playRcommandVideo();
+		DiscoverAction.waitVideoLoading();
+		Draw.takeScreenShotWithDraw("waitVideoLoading");
+		pressBack(1);
+	}
+	@Test  (invocationCount = 20)
 	public void testPlayNewestVideo(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickNewest();
 		swipeToUp(1000, getRandom());
@@ -52,6 +64,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test (invocationCount = 5)
 	public static void testRecommandSwip(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickRecommand();
 		for (int i = 0; i < 20; i++) {
@@ -62,6 +76,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test (invocationCount = 5)
 	public static void testNewestSwip(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickNewest();
 		for (int i = 0; i < 20; i++) {
@@ -72,6 +88,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public static void testCloseRecommand(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		for (int i = 0; i < 10; i++) {
 			swipeToDown(1000, 3);
@@ -82,6 +100,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public void testRecommandNewest(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		for (int i = 0; i < 5; i++) {
 			DiscoverAction.clickNewest();
@@ -99,6 +119,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public void testSearch(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickSearch();
 		DiscoverAction.inputSearchString("b");
@@ -109,6 +131,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public void testSearchThenClear(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickSearch();
 		DiscoverAction.inputSearchString("a");
@@ -120,6 +144,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public void testSearchThenViewVideo(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickSearch();
 		DiscoverAction.inputSearchString("a");
@@ -132,6 +158,8 @@ public class DiscoverCase extends VP{
 	}
 	@Test(invocationCount = 5)
 	public void testAddFollow(){
+		initializeScript();
+
 		MainAction.clickDiscover();
 		DiscoverAction.clickSearch();
 		DiscoverAction.inputSearchString("a");
@@ -140,5 +168,13 @@ public class DiscoverCase extends VP{
 		swipeToUp(1000, getRandom());
 		DiscoverAction.clickSearchResultAddFollow();
 		Draw.takeScreenShot();
+	}
+	public void test(){
+		initializeScript();
+
+		MainAction.clickDiscover();
+		for (int i = 0; i < 50; i++) {
+			VP2.swipeToUp(1000, 5);
+		}
 	}
 }

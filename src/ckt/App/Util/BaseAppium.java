@@ -60,7 +60,7 @@ public class BaseAppium {
              //注册事件
              eventDriver.register(new AppiumEventListener());
              
-        	//EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumEventListener());
+        	/*EventFiringWebDriverFactory.getEventFiringWebDriver(driver, new AppiumEventListener());*/
         	
         	driver.manage().timeouts().implicitlyWait(TimeUnitSECONDS,TimeUnit.SECONDS);
         	
@@ -84,7 +84,11 @@ public class BaseAppium {
      */
 	public static void stopAppiumDriver(){
 		log("quit appium driver");
-		getDriver().quit();
+		try {
+			getDriver().quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public static void log(String message){
 		Log.info(message);

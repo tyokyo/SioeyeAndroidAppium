@@ -14,6 +14,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import ckt.android.action.AccountAction;
+
 public class VP extends BaseAppium{
 	/**
 	 * This method use to reset the Android App,and clear th account 
@@ -58,7 +60,7 @@ public class VP extends BaseAppium{
 	}
 	public static void clickElement(WebElement webElement){
 		if (webElement!=null) {
-			log("CLICK-WebElement::"+webElement.getAttribute("xpath"));
+			log("CLICK-WebElement");
 			webElement.click();
 		}else {
 			log("Element is Null");
@@ -189,7 +191,7 @@ public class VP extends BaseAppium{
 		int width = getDriver().manage().window().getSize().width;  
 		int height = getDriver().manage().window().getSize().height;  
 		for (int i = 1; i <= num; i++) {  
-			getDriver().swipe(width / 2, height * 4/ 6, width / 2, height *3/ 6, during);  
+			getDriver().swipe(width / 2, height * 5/ 6, width / 2, height *2/ 6, during);  
 			//iosdriver.swipe(width / 2, height * 3/ 4, width / 2, height *1/ 4, during);  
 			Log.info("swipeToUp-"+i);
 			wait(1);  
@@ -198,7 +200,7 @@ public class VP extends BaseAppium{
 	public static int getRandom(){
 		Random random=new java.util.Random();// 定义随机类
 		int result=random.nextInt(30);// 返回[0,10)集合中的整数，注意不包括10
-		log("random:"+result+1);
+		log("random:"+result);
 		return result+1;
 	}
 	/** 
@@ -397,6 +399,10 @@ public class VP extends BaseAppium{
 	/**页面过长时候滑动页面 window.scrollTo(左边距,上边距); */
 	public void scrollPage(int x,int y){
 		String js ="window.scrollTo("+x+","+y+");";
-	    ((JavascriptExecutor)getDriver()).executeScript(js);
+		((JavascriptExecutor)getDriver()).executeScript(js);
+	}
+	public static void initializeScript(){
+		reStartApp();
+		AccountAction.inLogin();
 	}
 }

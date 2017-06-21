@@ -26,5 +26,8 @@ public class DiscoverPage {
 	//说点什么吧
 	public static final String speak_some_id = "cn.sioeye.sioeyeapp:id/tipText";
 	public static final String speak_some_edit_id = "cn.sioeye.sioeyeapp:id/edit_text";
+	//推荐视频头像
+	public static final String media_avatar_id = "cn.sioeye.sioeyeapp:id/media_avatar";
+	
 	
 }
