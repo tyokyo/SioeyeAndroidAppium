@@ -1,5 +1,8 @@
 package ckt.android.action.me;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import ckt.App.Util.VP;
 import ckt.android.action.MainAction;
 import ckt.android.page.me.MePage;
@@ -11,7 +14,48 @@ public class MeAction extends VP{
 	 * @param Null
 	 */
 	public static void clickLiveSetting_LiveTitle(){
-		clickById(MePage.live_title_id);
+		clickByText("直播标题");
+		//clickById(MePage.live_title_id);
+	}
+	/**
+	 * click-直播标题-修改-(确认)
+	 *
+	 * @param Null
+	 */
+	public static void clickSure(){
+		clickById(MePage.sure_id);
+	}
+	/**
+	 * click--修改-(保存)
+	 *
+	 * @param Null
+	 */
+	public static void clickDone(){
+		clickById(MePage.done_id);
+	}
+	/**
+	 * 直播标题内容
+	 *
+	 * @param Null
+	 */
+	public static WebElement getLiveTitleElement(){
+		return getElementById(MePage.live_title_content_id);
+	}
+	/**
+	 * 直播标题内容
+	 *
+	 * @param Null
+	 */
+	public static String getLiveTitleContent(){
+		return getElementById(MePage.live_title_id).findElement(By.id(MePage.live_content_id)).getText();
+	}
+	/**
+	 * 直播-谁可以看我的直播
+	 *
+	 * @param Null
+	 */
+	public static String getLiveWhoCanView(){
+		return getElementById(MePage.live_privacy_id).findElement(By.id(MePage.live_content_id)).getText();
 	}
 	
 	/**
@@ -21,6 +65,44 @@ public class MeAction extends VP{
 	 */
 	public static void clickLiveSetting_LivePrivacy(){
 		clickById(MePage.live_privacy_id);
+	}
+	/**
+	 * click-谁可以看我的直播-公开
+	 *
+	 * @param Null
+	 */
+	public static void clickLiveSetting_LivePrivacy_public(){
+		clickByText("公开");
+	}
+	/**
+	 * click-谁可以看我的直播-密码
+	 *
+	 * @param Null
+	 */
+	public static void clickLiveSetting_LivePrivacy_private(){
+		clickByText("秘密");
+	}
+	/**
+	 * click-谁可以看我的直播-部分可见
+	 *
+	 * @param Null
+	 */
+	public static void clickLiveSetting_LivePrivacy_personal(){
+		clickByText("部分可见");
+	}
+	/**
+	 * click-谁可以看我的直播-部分可见-选择好友
+	 *
+	 * @param Null
+	 */
+	public static void clickLiveSetting_LivePrivacy_personal_selectpeople(){
+		if (existById(MePage.live_personal_selected_id)) {
+			MeAction.clickDone();
+			waitUntilByGone(By.id(MePage.done_id), 20);
+		}else {
+			clickById(MePage.live_personal_select_id);
+			waitUntilByGone(By.id(MePage.done_id), 20);
+		}
 	}
 	/**
 	 * click-同步直播到

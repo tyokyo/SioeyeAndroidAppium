@@ -3,7 +3,8 @@ package ckt.android.action.me;
 import org.openqa.selenium.By;
 
 import ckt.App.Util.VP;
-import ckt.android.page.me.MeMainPage;
+import ckt.android.action.MainAction;
+import ckt.android.page.me.MePage;
 
 public class MeMainAction extends VP{
 	/**
@@ -12,7 +13,7 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void clickUserEdit(){
-		clickById(MeMainPage.user_edit_id);
+		clickById(MePage.user_edit_id);
 	}
 	/**
 	 * click-直播按钮
@@ -20,7 +21,7 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void clickLive(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(0).click();
+		getElementById(MePage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(0).click();
 	}
 	/**
 	 * click-关注按钮
@@ -28,7 +29,7 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void clickFollow(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(1).click();
+		getElementById(MePage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(1).click();
 	}
 	/**
 	 * click-粉丝按钮
@@ -36,7 +37,7 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void clickFans(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		getElementById(MePage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
 	}
 	/**
 	 * to-直播配置
@@ -44,7 +45,8 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void navToLiveConfig(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		MainAction.clickMe();
+		clickLiveConfig();
 	}
 	/**
 	 * to-我的二维码
@@ -52,7 +54,8 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void navToMyQRCode(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		MainAction.clickMe();
+		clickMyQrCode();
 	}
 	/**
 	 * to-消息
@@ -60,7 +63,8 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void navToMessage(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		MainAction.clickMe();
+		clickMessage();
 	}
 	/**
 	 * to-相机
@@ -68,7 +72,8 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void navToCamera(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		MainAction.clickMe();
+		clickCamera();
 	}
 	/**
 	 * to-设置
@@ -76,7 +81,8 @@ public class MeMainAction extends VP{
 	 * @param Null
 	 */
 	public static void navToSettings(){
-		getElementById(MeMainPage.page_navigate_id).findElements(By.className("android.widget.LinearLayout")).get(2).click();
+		MainAction.clickMe();
+		clickSetting();
 	}
 	/**
 	 * click-直播配置
@@ -85,6 +91,8 @@ public class MeMainAction extends VP{
 	 */
 	public static void clickLiveConfig(){
 		clickByText("直播配置");
+		wait(2);
+		waitUntilByFind(By.id(MePage.live_title_id), 10);
 	}
 	/**
 	 * click-我的二维码
@@ -134,7 +142,7 @@ public class MeMainAction extends VP{
 	 *@
 	 */
 	public static void getUserName(){
-		getElementById(MeMainPage.username_id).getText();
+		getElementById(MePage.username_id).getText();
 	}
 	/**
 	 *Get-sioeye id
@@ -144,6 +152,6 @@ public class MeMainAction extends VP{
 	 *@
 	 */
 	public static void getUserId(){
-		getElementById(MeMainPage.user_sioyeye_id).getText();
+		getElementById(MePage.user_sioyeye_id).getText();
 	}
 }
