@@ -13,9 +13,9 @@ import ckt.android.action.MainAction;
 
 public class DiscoverCase extends VP{
 	@BeforeSuite
-	@Parameters({ "port", "udid" ,"address","username","password","apk"})
-	public void beforeSuite(String port, String udid,String address,String username,String password,String apk){
-		startAppiumDriver(address,port,udid,username,password,apk);
+	@Parameters({ "port", "udid" ,"address","username","password","apk","automationName"})
+	public void beforeSuite(String port, String udid,String address,String username,String password,String apk,String automationName){
+		startAppiumDriver(address,port,udid,username,password,apk,automationName);
 	}
 	@AfterSuite
 	public void afterSuite(){
@@ -35,31 +35,19 @@ public class DiscoverCase extends VP{
 		Draw.takeScreenShotWithDraw("waitVideoLoading");
 		pressBack(1);
 	}
-	@Test(invocationCount = 2)
-	public void testPlayRecommandVideo1(){
-		initializeScript();
-
-		MainAction.clickDiscover();
-		Draw.takeScreenShotWithDraw("Discover");
-		DiscoverAction.clickRecommand();
-		swipeToUp(200, getRandom());
-
-		DiscoverAction.playRcommandVideo();
-		DiscoverAction.waitVideoLoading();
-		Draw.takeScreenShotWithDraw("waitVideoLoading");
-		pressBack(1);
-	}
 	@Test  (invocationCount = 20)
 	public void testPlayNewestVideo(){
 		initializeScript();
 
 		MainAction.clickDiscover();
+		Draw.takeScreenShotWithDraw("Discover");
 		DiscoverAction.clickNewest();
 		swipeToUp(1000, getRandom());
-
+		Draw.takeScreenShotWithDraw("最新");
+		
 		DiscoverAction.playNewsetVideo();
 		DiscoverAction.waitVideoLoading();
-		Draw.takeScreenShot();
+		Draw.takeScreenShotWithDraw("waitVideoLoading");
 		pressBack(1);
 	}
 	@Test (invocationCount = 5)

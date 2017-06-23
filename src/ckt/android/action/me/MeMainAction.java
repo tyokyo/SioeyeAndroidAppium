@@ -85,6 +85,15 @@ public class MeMainAction extends VP{
 		clickSetting();
 	}
 	/**
+	 * to-设置
+	 *
+	 * @param Null
+	 */
+	public static void navToUserEdit(){
+		MainAction.clickMe();
+		clickUserEdit();
+	}
+	/**
 	 * click-直播配置
 	 *
 	 * @param Null

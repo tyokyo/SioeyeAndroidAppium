@@ -14,9 +14,9 @@ import ckt.android.page.me.MePage;
 
 public class LiveConfigCase extends VP{
 	@BeforeSuite
-	@Parameters({ "port", "udid" ,"address","username","password","apk"})
-	public void beforeSuite(String port, String udid,String address,String username,String password,String apk){
-		startAppiumDriver(address,port,udid,username,password,apk);
+	@Parameters({ "port", "udid" ,"address","username","password","apk","automationName"})
+	public void beforeSuite(String port, String udid,String address,String username,String password,String apk,String automationName){
+		startAppiumDriver(address,port,udid,username,password,apk,automationName);
 	}
 	@AfterSuite
 	public void afterSuite(){
@@ -24,7 +24,9 @@ public class LiveConfigCase extends VP{
 	}
 
 	@Test
-	public void testModifyTitle(){
+	public void testModifyTitleEn(){
+		initializeScript();
+		
 		MeMainAction.navToLiveConfig();
 		MeAction.clickLiveSetting_LiveTitle();
 		String expectLiveTitle=getRandomString(15);
@@ -38,7 +40,25 @@ public class LiveConfigCase extends VP{
 		Assert.assertEquals(activeLiveTitle, expectLiveTitle, "修改直播标题");
 	}
 	@Test
+	public void testModifyTitleCn(){
+		initializeScript();
+		
+		MeMainAction.navToLiveConfig();
+		MeAction.clickLiveSetting_LiveTitle();
+		String expectLiveTitle="2017俄罗斯世界杯";
+		setText(MeAction.getLiveTitleElement(),expectLiveTitle);
+		MeAction.clickSure();
+		//等待保存完成
+		waitUntilByGone(By.id(MePage.sure_id), 20);
+		reStartApp();
+		MeMainAction.navToLiveConfig();
+		String activeLiveTitle=MeAction.getLiveTitleContent();
+		Assert.assertEquals(activeLiveTitle, expectLiveTitle, "修改直播标题");
+	}
+	@Test
 	public void testLivePrivacyPublic(){
+		initializeScript();
+		
 		MeMainAction.navToLiveConfig();
 		MeAction.clickLiveSetting_LivePrivacy();
 		MeAction.clickLiveSetting_LivePrivacy_public();;
@@ -47,12 +67,13 @@ public class LiveConfigCase extends VP{
 		waitUntilByGone(By.id(MePage.sure_id), 20);
 		reStartApp();
 		MeMainAction.navToLiveConfig();
-		MeAction.clickLiveSetting_LivePrivacy();
 		String active =MeAction.getLiveWhoCanView();
 		Assert.assertEquals(active, "公开", "公开");
 	}
 	@Test
 	public void testLivePrivacyPrivate(){
+		initializeScript();
+		
 		MeMainAction.navToLiveConfig();
 		MeAction.clickLiveSetting_LivePrivacy();
 		MeAction.clickLiveSetting_LivePrivacy_private();
@@ -61,12 +82,13 @@ public class LiveConfigCase extends VP{
 		waitUntilByGone(By.id(MePage.sure_id), 20);
 		reStartApp();
 		MeMainAction.navToLiveConfig();
-		MeAction.clickLiveSetting_LivePrivacy();
 		String active =MeAction.getLiveWhoCanView();
-		Assert.assertEquals(active, "秘密", "秘密");
+		Assert.assertEquals(active, "私密", "私密");
 	}
 	@Test
 	public void testLivePrivacyPersonal(){
+		initializeScript();
+		
 		MeMainAction.navToLiveConfig();
 		MeAction.clickLiveSetting_LivePrivacy();
 		MeAction.clickLiveSetting_LivePrivacy_personal();
@@ -74,8 +96,6 @@ public class LiveConfigCase extends VP{
 		MeAction.clickLiveSetting_LivePrivacy_personal_selectpeople();
 		reStartApp();
 		MeMainAction.navToLiveConfig();
-		MeAction.clickLiveSetting_LivePrivacy();
-		
 		String active =MeAction.getLiveWhoCanView();
 		Assert.assertEquals(active, "部分可见", "部分可见");
 	}

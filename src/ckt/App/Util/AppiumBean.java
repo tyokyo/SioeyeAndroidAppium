@@ -37,6 +37,13 @@ public class AppiumBean {
 	private  String username;
 	private  String password;
 	private  String apk;
+	private  String automationName;
+	public String getAutomationName() {
+		return automationName;
+	}
+	public void setAutomationName(String automationName) {
+		this.automationName = automationName;
+	}
 	public String getApk() {
 		return apk;
 	}

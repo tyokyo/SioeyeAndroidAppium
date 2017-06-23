@@ -8,14 +8,130 @@ import ckt.android.action.MainAction;
 import ckt.android.page.me.MePage;
 
 public class MeAction extends VP{
+
+	/**
+	 * 获取-位置
+	 *
+	 * @param Null
+	 */
+	public static WebElement getLocationName(){
+		return getElementById(MePage.location_name_id);
+	}
+	/**
+	 * click-性别
+	 *
+	 * @param Null
+	 */
+	public static void clickSex(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.sex_id);
+	}
+	/**
+	 * click-性别-male
+	 *
+	 * @param Null
+	 */
+	public static void clickSex_Male(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.sex_male_id);
+	}
+	/**
+	 * click-性别-female
+	 *
+	 * @param Null
+	 */
+	public static void clickSex_FeMale(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.se_female_id);
+	}
+	/**
+	 * 性别内容
+	 *
+	 * @param Null
+	 */
+	public static String getSexContent(){
+		return getElementById(MePage.sex_id).findElement(By.id(MePage.live_content_id)).getText();
+	}
+	/**
+	 * click-性别-保密
+	 *
+	 * @param Null
+	 */
+	public static void clickSex_Other(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.sex_other_id);
+	}
+	
+	/**
+	 * click-位置
+	 *
+	 * @param Null
+	 */
+	public static void clickLocation(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.location_id);
+	}
+	/**
+	 * click-位置
+	 *
+	 * @param Null
+	 */
+	public static WebElement getLocationSearchElement(){
+		return getElementById(MePage.location_search_id);
+	}
+	/**
+	 * click-爱好
+	 *
+	 * @param Null
+	 */
+	public static void clickInterest(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.interest_id);
+	}
+	/**
+	 * click-个性签名
+	 *
+	 * @param Null
+	 */
+	public static void clickAbout(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.about_id);
+	}
+	/**
+	 * click-昵称
+	 *
+	 * @param Null
+	 */
+	public static void clickNickName(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.nickname_id);
+	}
+	/**
+	 * 获取-昵称对象
+	 *
+	 * @param Null
+	 */
+	public static WebElement getNickNameElement(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		return getElementById(MePage.live_title_content_id);
+	}
+	/**
+	 * 昵称内容
+	 *
+	 * @param Null
+	 */
+	public static String getNickNameContent(){
+		return getElementById(MePage.nickname_id).findElement(By.id(MePage.live_content_id)).getText();
+	}
 	/**
 	 * click-直播标题
 	 *
 	 * @param Null
 	 */
 	public static void clickLiveSetting_LiveTitle(){
-		clickByText("直播标题");
-		//clickById(MePage.live_title_id);
+		//clickByText("直播标题");
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "直播标题")).click();;
+		clickById(MePage.live_title_id);
 	}
 	/**
 	 * click-直播标题-修改-(确认)
@@ -80,7 +196,7 @@ public class MeAction extends VP{
 	 * @param Null
 	 */
 	public static void clickLiveSetting_LivePrivacy_private(){
-		clickByText("秘密");
+		clickByText("私密");
 	}
 	/**
 	 * click-谁可以看我的直播-部分可见
@@ -99,9 +215,14 @@ public class MeAction extends VP{
 		if (existById(MePage.live_personal_selected_id)) {
 			MeAction.clickDone();
 			waitUntilByGone(By.id(MePage.done_id), 20);
+			MeAction.clickSure();
+			waitUntilByGone(By.id(MePage.sure_id), 20);
 		}else {
 			clickById(MePage.live_personal_select_id);
+			MeAction.clickDone();
 			waitUntilByGone(By.id(MePage.done_id), 20);
+			MeAction.clickSure();
+			waitUntilByGone(By.id(MePage.sure_id), 20);
 		}
 	}
 	/**

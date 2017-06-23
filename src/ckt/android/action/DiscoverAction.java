@@ -89,32 +89,31 @@ public class DiscoverAction extends VP{
 		List<WebElement> elements = swip.findElements(By.className("android.widget.RelativeLayout"));
 		int size = elements.size();
 		log("Video count is "+size);
-		for (WebElement webElement : elements) {
+		for (WebElement element : elements) {
+			boolean find = false;
 			try {
-				webElement.findElement(By.id(DiscoverPage.media_avatar_id));
-				
-				List<WebElement> textViewElements =webElement.findElements(By.className("android.widget.TextView"));
-				for (WebElement textViewElement : textViewElements) {
-					log(textViewElement.getText());
-				}
-				
-				webElement.click();
-				log("CLICK ELEMENT- PLAY VIDEO");
-				
-				if (existById(DiscoverPage.dismiss_id)) {
-					clickDismiss();
-				}
-				break;
+				element.findElement(By.id(DiscoverPage.media_avatar_id));
+				element.findElement(By.className("android.view.View"));
+				log("find avatar");
+				find=true;
 			} catch (Exception e) {
 				// TODO: handle exception
 				log("not find avatar");
 			}
-		}
-		
-		wait(3);
-		Draw.takeScreenShotWithDraw("playVideo");
-		if (existById(DiscoverPage.dismiss_id)) {
-			clickDismiss();
+			if (find) {
+				List<WebElement> textViewElements =element.findElements(By.className("android.widget.TextView"));
+				for (WebElement textViewElement : textViewElements) {
+					log(textViewElement.getText());
+				}
+				log("CLICK ELEMENT- PLAY VIDEO");
+				clickElement(element);
+				if (existById(DiscoverPage.dismiss_id)) {
+					clickDismiss();
+				}
+				wait(3);
+				Draw.takeScreenShotWithDraw("playVideo");
+				break;
+			}
 		}
 	}
 	/**
@@ -127,31 +126,38 @@ public class DiscoverAction extends VP{
 		List<WebElement> elements = swip.findElements(By.className("android.widget.RelativeLayout"));
 		int size = elements.size();
 		log("Video count is "+size);
-		for (WebElement webElement : elements) {
+		for (WebElement element : elements) {
+			boolean find = false;
 			try {
-				webElement.findElement(By.id(DiscoverPage.media_avatar_id));
-				
-				List<WebElement> textViewElements =webElement.findElements(By.className("android.widget.TextView"));
-				for (WebElement textViewElement : textViewElements) {
-					log(textViewElement.getText());
-				}
-				
-				webElement.click();
-				log("CLICK ELEMENT- PLAY VIDEO");
-				
-				if (existById(DiscoverPage.dismiss_id)) {
-					clickDismiss();
-				}
-				break;
+				element.findElement(By.id(DiscoverPage.media_avatar_id));
+				element.findElement(By.className("android.view.View"));
+				log("find avatar");
+				find=true;
 			} catch (Exception e) {
 				// TODO: handle exception
 				log("not find avatar");
+			}
+			if (find) {
+				List<WebElement> textViewElements =element.findElements(By.className("android.widget.TextView"));
+				for (WebElement textViewElement : textViewElements) {
+					log(textViewElement.getText());
+				}
+				log("CLICK ELEMENT- PLAY VIDEO");
+				clickElement(element);
+				if (existById(DiscoverPage.dismiss_id)) {
+					clickDismiss();
+				}
+				wait(3);
+				Draw.takeScreenShotWithDraw("playVideo");
+				break;
 			}
 		}
 	}
 	public static void waitVideoLoading(){
 		//wait(30);
 		//waitUntilByFind(By.id(DiscoverPage.speak_some_id), 300);
+		String  xpath = String.format("//android.widget.TextView[contains(@text,'%s')]", "正在连接聊天室");
+		waitUntilByNotFind(By.xpath(xpath), 60);
 		clickById(DiscoverPage.speak_some_id);
 		setText(getElementById(DiscoverPage.speak_some_edit_id), "来了");
 	}

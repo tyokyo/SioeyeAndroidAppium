@@ -84,11 +84,6 @@ public class TestngListener extends TestListenerAdapter {
 		if (VP.existByTextContains("无响应")) {
 			drawString  = drawString+" Exception_ANR ";
 		}
-		try {
-			takeScreenShot(tr,drawString);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 	}
 
 	@Override

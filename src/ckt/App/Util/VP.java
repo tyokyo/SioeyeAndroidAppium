@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import ckt.android.action.AccountAction;
+import ckt.android.page.MainPage;
 
 public class VP extends BaseAppium{
 	/**
@@ -38,6 +39,8 @@ public class VP extends BaseAppium{
 		getDriver().closeApp();
 		log("LAUNCH-App");
 		getDriver().launchApp();
+		wait(5);
+		waitUntilByFind(By.id(MainPage.discover_id), 30);
 	}
 	/**
 	 * This method use xpath to clci element //android.widget.TextView[@text='%s' ]
@@ -62,6 +65,8 @@ public class VP extends BaseAppium{
 	public static void clickElement(WebElement webElement){
 		if (webElement!=null) {
 			log("CLICK-WebElement");
+			log(""+webElement.getLocation().x);
+			log(""+webElement.getLocation().y);
 			webElement.click();
 		}else {
 			log("Element is Null");
@@ -74,7 +79,7 @@ public class VP extends BaseAppium{
 	//getDriver().findElementByXPath("//android.widget.TextView[contains(@text,'is xpathname')]");
 	public static void clickByXpath(String xpath){
 		log("CLICK-XPATH:"+xpath);
-		getDriver().findElementByXPath(xpath).click();;
+		getDriver().findElementByXPath(xpath).click();
 	}
 	public static void click(int x ,int y){
 		log(String.format("CLICK X=%s,Y=%s",x,y));
@@ -310,7 +315,7 @@ public class VP extends BaseAppium{
 		VP2.waitAuto(By.xpath(xpath), timeout);
 	}
 	public static void waitUntilByFind(By by,int seconds){
-		log(String.format("waitUntilFind  %s in  %d seconds",by.toString(),seconds ));
+		log(String.format("waitUntilFind  by=%s in  %d seconds",by.toString(),seconds));
 		try {
 			WebDriverWait wait = new WebDriverWait(getDriver(), seconds);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
@@ -320,6 +325,54 @@ public class VP extends BaseAppium{
 			log(by.toString() + " waitUntilFind = Not find ");
 		}
 	}
+	public static void waitUntilByTextContains(String text,int seconds){
+		String xpath = String.format("//android.widget.TextView[contains(@text,'%s')]", text);
+		By by = By.xpath(xpath);
+		log(String.format("waitUntilFind  by=%s in  %d seconds",by.toString(),seconds));
+		try {
+			WebDriverWait wait = new WebDriverWait(getDriver(), seconds);
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+			log(by.toString() + "  waitUntilFind = success");
+		} catch (Exception e) {
+			// TODO: handle exception
+			log(by.toString() + " waitUntilFind = Not find ");
+		}
+	}
+	public static void waitUntilByText(String text,int seconds){
+		String xpath = String.format("//android.widget.TextView[@text='%s']", text);
+		By by = By.xpath(xpath);
+		log(String.format("waitUntilFind  by=%s in  %d seconds",by.toString(),seconds));
+		try {
+			WebDriverWait wait = new WebDriverWait(getDriver(), seconds);
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+			log(by.toString() + "  waitUntilFind = success");
+		} catch (Exception e) {
+			// TODO: handle exception
+			log(by.toString() + " waitUntilFind = Not find ");
+		}
+	}
+	public static void waitUntilByNotFind(By by,int seconds){
+		log(String.format("waitUntilByNotFind   %s in  %d seconds",by.toString(),seconds ));
+		boolean notFind = false;
+		for (int i = 1; i < seconds; i++) {
+			if (notFind) {
+				log(String.format("waitUntilByNotFind  by=%s  in %d seconds  success",by.toString(),seconds));
+				break;
+			}else {
+				try {
+					WebDriverWait wait = new WebDriverWait(getDriver(), 3);
+					wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+				} catch (Exception e) {
+					// TODO: handle exception
+					notFind = true;
+				}
+			}
+		}
+		if (!notFind) {
+			log(String.format("waitUntilByNotFind  by=%s  in % seconds  timeout",by.toString(),seconds));
+		}
+	}
+	
 	public static void waitUntilTextToBe(By by,String text,int seconds){
 		log(String.format("textToBe  %s in  %d seconds",by.toString(),seconds ));
 		try {
@@ -332,17 +385,18 @@ public class VP extends BaseAppium{
 		}
 	}
 	public static void waitUntilByGone(By by,int seconds){
-		log(String.format("waitUntilByNotFind in %d secods",seconds));
+		log(String.format("wait %s gone  in %d secods",by.toString(),seconds));
 		boolean exit=false;
 		for (int i = 0; i < seconds; i++) {
-			try {
-				getDriver().findElement(by);
-			} catch (Exception e) {
-				log("now exit");
-				exit=true;
-			}
 			if (exit) {
 				break;
+			}else {
+				try {
+					getDriver().findElement(by);
+				} catch (Exception e) {
+					log("not find element , now exit");
+					exit=true;
+				}
 			}
 		}
 	}
@@ -355,6 +409,9 @@ public class VP extends BaseAppium{
 	}
 	public static void pressBack(){
 		pressBack(1);
+	}
+	public static void pressEnter(){
+		getDriver().pressKeyCode(AndroidKeyCode.ENTER);
 	}
 	public static void pressHome(int count){
 		for (int i = 0; i < count; i++) {
@@ -403,10 +460,10 @@ public class VP extends BaseAppium{
 		((JavascriptExecutor)getDriver()).executeScript(js);
 	}
 	public static void initializeScript(){
-		Draw.takeScreenShotWithDraw("initializeScript");
+		//Draw.takeScreenShotWithDraw("initializeScript");
 		reStartApp();
 		AccountAction.inLogin();
-		Draw.takeScreenShotWithDraw("inLogin_status");
+		//Draw.takeScreenShotWithDraw("inLogin_status");
 	}
 
 	/**

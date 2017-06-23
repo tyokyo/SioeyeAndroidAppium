@@ -22,7 +22,7 @@ public class MePage {
 	public static final String sure_id = "cn.sioeye.sioeyeapp:id/right";
 	//保存
 	public static final String done_id = "cn.sioeye.sioeyeapp:id/done";
-	
+
 	//直播配置-谁可以看我的直播
 	public static final String live_privacy_id = "cn.sioeye.sioeyeapp:id/privacy_settings";
 	//直播配置-直播到
@@ -30,7 +30,7 @@ public class MePage {
 	//直播到部分可见
 	public static final String live_personal_selected_id = "cn.sioeye.sioeyeapp:id/show_userimg";
 	public static final String live_personal_select_id = "cn.sioeye.sioeyeapp:id/llt_select_people";
-	
+
 	//qr 图像
 	public static final String my_qr_img_id = "cn.sioeye.sioeyeapp:id/qr_img";
 	//添加设备
@@ -47,6 +47,27 @@ public class MePage {
 	public static final String follow_tag_id = "cn.sioeye.sioeyeapp:id/tv_following_tag";
 	//粉丝-加关注
 	public static final String fans_add_id = "cn.sioeye.sioeyeapp:id/user_follow";
+
+	//编辑-昵称
+	public static final String nickname_id ="cn.sioeye.sioeyeapp:id/nickname";
+	//编辑-性别
+	public static final String sex_id ="cn.sioeye.sioeyeapp:id/sex";
+	//编辑-性别-女
+	public static final String se_female_id ="cn.sioeye.sioeyeapp:id/rlt_female";
+	//编辑-性别-男
+	public static final String sex_male_id ="cn.sioeye.sioeyeapp:id/rlt_male";
+	//编辑-性别-保密
+	public static final String sex_other_id ="cn.sioeye.sioeyeapp:id/rlt_other";
+	//编辑-位置
+	public static final String location_id ="cn.sioeye.sioeyeapp:id/location";
+	public static final String location_search_id ="cn.sioeye.sioeyeapp:id/search_filter_input";
 	
+	//编辑-爱好
+	public static final String interest_id ="cn.sioeye.sioeyeapp:id/interest";
+	//编辑-个性签名
+	public static final String about_id ="cn.sioeye.sioeyeapp:id/about";
+
+	//定位
+	public static final String location_name_id ="cn.sioeye.sioeyeapp:id/location_name";
 	
 }
