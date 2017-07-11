@@ -64,6 +64,14 @@ public class MePage {
 	
 	//编辑-爱好
 	public static final String interest_id ="cn.sioeye.sioeyeapp:id/interest";
+	//编辑-爱好-推荐
+	public static final String interest_recommand_id ="cn.sioeye.sioeyeapp:id/tag_text";
+	//编辑-爱好-我的爱好
+	public static final String interest_display_id ="cn.sioeye.sioeyeapp:id/display_text";
+	public static final String interest_add_id ="cn.sioeye.sioeyeapp:id/add_tag_view";
+	public static final String interest_add_content_id ="cn.sioeye.sioeyeapp:id/user_input_interest";
+	public static final String interest_add_cancel_id ="cn.sioeye.sioeyeapp:id/add_tag_cancel";
+	
 	//编辑-个性签名
 	public static final String about_id ="cn.sioeye.sioeyeapp:id/about";
 

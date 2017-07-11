@@ -1,5 +1,7 @@
 package ckt.android.action.me;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -61,7 +63,7 @@ public class MeAction extends VP{
 		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
 		clickById(MePage.sex_other_id);
 	}
-	
+
 	/**
 	 * click-位置
 	 *
@@ -87,6 +89,36 @@ public class MeAction extends VP{
 	public static void clickInterest(){
 		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
 		clickById(MePage.interest_id);
+	}
+	public static void clickDisplayInterest(){
+		//getDriver().findElementByAndroidUIAutomator(String.format("new UiSelector().text(\"%s\")", "昵称")).click();;
+		clickById(MePage.interest_display_id);
+	}
+	public static void clickAddInterest(){
+		clickById(MePage.interest_add_id);
+	}
+	public static WebElement getInterestAddElement(){
+		return getElementById(MePage.interest_add_content_id);
+	}
+	public static void deleteAllDisplayInterest(){
+		List<WebElement> elements =(List<WebElement>) getDriver().findElements(By.id(MePage.interest_display_id));
+		int size=elements.size();
+		log("deleteAllDisplayInterest-"+size);
+		for (int i = 0; i < size; i++) {
+			clickDisplayInterest();
+			wait(2);
+		}
+	}
+	public static void allAllRecommandInterest(){
+		List<WebElement> elements =(List<WebElement>) getDriver().findElements(By.id(MePage.interest_recommand_id));
+		for (WebElement webElement : elements) {
+			webElement.click();
+			wait(2);
+		}
+	}
+	public static void addInterest(String interest){
+		clickAddInterest();
+		setText(getInterestAddElement(), getRandomString(4));
 	}
 	/**
 	 * click-个性签名
@@ -140,6 +172,7 @@ public class MeAction extends VP{
 	 */
 	public static void clickSure(){
 		clickById(MePage.sure_id);
+		wait(3);
 	}
 	/**
 	 * click--修改-(保存)
@@ -173,7 +206,7 @@ public class MeAction extends VP{
 	public static String getLiveWhoCanView(){
 		return getElementById(MePage.live_privacy_id).findElement(By.id(MePage.live_content_id)).getText();
 	}
-	
+
 	/**
 	 * click-谁可以看我的直播
 	 *
@@ -305,7 +338,7 @@ public class MeAction extends VP{
 	public static void clickSetting_AboutSioeye(){
 		clickByText("关于Sioeye");
 	}
-	
+
 	/**
 	 * click-粉丝-添加关注
 	 *

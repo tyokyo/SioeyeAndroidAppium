@@ -108,12 +108,36 @@ public class UserEditCase extends VP{
 	@Test
 	public void testLocationSearch(){
 		initializeScript();
-
 		MeMainAction.navToUserEdit();
 		MeAction.clickLocation();
 		setText(MeAction.getLocationSearchElement(), "北京");
-		MeAction.getLocationName().click();
-		waitUntilByTextContains("当前位置", 30);
-		Draw.takeScreenShotWithDraw("定位");
+		//getDriver().removeApp("io.appium.android.ime");
+		MeAction.getLocationSearchElement().click();
+		wait(3);
+		//MeAction.getLocationName().click();
+		//waitUntilByTextContains("当前位置", 30);
+		//Draw.takeScreenShotWithDraw("定位");
+	}
+	@Test
+	public void testDeleteAllInterest(){
+		initializeScript();
+		
+		MeMainAction.navToUserEdit();
+		MeAction.clickInterest();
+		MeAction.deleteAllDisplayInterest();
+		
+		MeAction.clickSure();
+		
+		boolean idDeleClearexpected=existById(MePage.interest_display_id);
+		Assert.assertEquals(false, idDeleClearexpected);
+	}
+	@Test
+	public void testAddAllRecomandInterest(){
+		initializeScript();
+		MeMainAction.navToUserEdit();
+		MeAction.clickInterest();
+		MeAction.deleteAllDisplayInterest();
+		MeAction.allAllRecommandInterest();
+		MeAction.clickSure();
 	}
 }

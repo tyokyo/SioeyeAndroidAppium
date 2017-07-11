@@ -18,6 +18,7 @@ import ckt.android.action.AccountAction;
 import ckt.android.page.MainPage;
 
 public class VP extends BaseAppium{
+	public static final String PACKAGE_STRING="cn.sioeye.sioeyeapp:id/";
 	/**
 	 * This method use to reset the Android App,and clear th account 
 	 *
@@ -87,6 +88,10 @@ public class VP extends BaseAppium{
 	}
 	public static WebElement getElementById(String id){
 		log("GET ELEMENT BY ID:"+id);
+		String automationName=getBean().getAutomationName();
+		if ("Selendroid".toUpperCase().equals(automationName.toUpperCase())) {
+			id = id.replaceAll(PACKAGE_STRING, "");
+		}
 		WebElement element = getDriver().findElement(By.id(id));
 		return element;
 	}
