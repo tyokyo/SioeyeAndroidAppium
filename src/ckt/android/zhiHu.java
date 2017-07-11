@@ -28,7 +28,7 @@ public class zhiHu {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName","HC44VWM04926");
+        capabilities.setCapability("deviceName","BBN4T17210000082");
         //capabilities.setCapability("platformVersion", "6.0.1");
         //if no need install don't add this
         capabilities.setCapability("app", "/Users/Qiang.Zhang/Desktop/software/apk/Sioeye2.0_APP_S11A_100-2.0.68.apk");
@@ -39,7 +39,7 @@ public class zhiHu {
         //no need sign
        // capabilities.setCapability("noSign", "false");
         //capabilities.setCapability("appActivity", ".main.MainActivity ");
-        driver = new AndroidDriver(new URL("http://10.120.3.115:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://10.120.3.243:4727/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
     }
  

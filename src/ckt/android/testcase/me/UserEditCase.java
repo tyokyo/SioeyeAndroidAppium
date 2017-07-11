@@ -122,11 +122,15 @@ public class UserEditCase extends VP{
 	public void testDeleteAllInterest(){
 		initializeScript();
 		
+		Draw.takeScreenShotWithDraw("DAXIONG1");
+		
 		MeMainAction.navToUserEdit();
 		MeAction.clickInterest();
 		MeAction.deleteAllDisplayInterest();
 		
 		MeAction.clickSure();
+		
+		Draw.takeScreenShotWithDraw("DAXIONG2");
 		
 		boolean idDeleClearexpected=existById(MePage.interest_display_id);
 		Assert.assertEquals(false, idDeleClearexpected);

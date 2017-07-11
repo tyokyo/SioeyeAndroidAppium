@@ -44,6 +44,13 @@ public class XmlSuite {
     	String runtimeStr = getRuntime();
     	int runtime = Integer.parseInt(runtimeStr);
     	for (int i = 0; i < runtime; i++) {
+    		try {
+				Thread.currentThread();
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			writeTestNgXml(i+1);
 		}
     }
